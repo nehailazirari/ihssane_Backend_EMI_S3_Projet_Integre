@@ -1,14 +1,18 @@
 package com.example.ihssane.model;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "Utilisateur")
-public abstract class Utilisateur {
+public class Utilisateur implements Serializable {
     @Id()
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
     @Column(nullable = false)
     private String nom;
@@ -31,11 +35,35 @@ public abstract class Utilisateur {
     @Column(name = "tel")
     private String telephone;
 
-    public Integer getId() {
+    public Utilisateur(String nom, String prenom, String password, String gmail, String ville, Date naissance, String telephone) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.password = password;
+        this.gmail = gmail;
+        this.ville = ville;
+        this.naissance = naissance;
+        this.telephone = telephone;
+    }
+
+    public Utilisateur(Long id, String nom, String prenom, String password, String gmail, String ville, Date naissance, String telephone) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.password = password;
+        this.gmail = gmail;
+        this.ville = ville;
+        this.naissance = naissance;
+        this.telephone = telephone;
+    }
+    public Utilisateur() {
+
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
