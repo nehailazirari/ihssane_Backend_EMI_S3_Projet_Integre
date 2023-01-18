@@ -5,10 +5,12 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Utilisateur")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
 public abstract class Utilisateur {
     @Id()
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false)
     private String nom;
@@ -31,11 +33,26 @@ public abstract class Utilisateur {
     @Column(name = "tel")
     private String telephone;
 
-    public Integer getId() {
+    public Utilisateur(Long id, String nom, String prenom, String password, String gmail, String ville, Date naissance, String telephone) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.password = password;
+        this.gmail = gmail;
+        this.ville = ville;
+        this.naissance = naissance;
+        this.telephone = telephone;
+    }
+
+    public Utilisateur() {
+
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId( Long id) {
         this.id = id;
     }
 
@@ -93,5 +110,19 @@ public abstract class Utilisateur {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    @Override
+    public String toString() {
+        return "Utilisateur{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", password='" + password + '\'' +
+                ", gmail='" + gmail + '\'' +
+                ", ville='" + ville + '\'' +
+                ", naissance=" + naissance +
+                ", telephone='" + telephone + '\'' +
+                '}';
     }
 }
