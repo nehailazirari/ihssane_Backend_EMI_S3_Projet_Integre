@@ -10,4 +10,3 @@ import java.util.List;
 public interface DonRepo extends JpaRepository<Don, Long> {
 
 }
-00000000000000000000000000000000000000000000000000000000000000000000000
