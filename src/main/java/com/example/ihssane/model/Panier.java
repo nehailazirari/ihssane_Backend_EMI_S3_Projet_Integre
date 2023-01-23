@@ -40,6 +40,7 @@ public class Panier implements Serializable{
 
         this.utilisateur = utilisateur;
         this.panierBD = panierBD;
+        System.out.println(3);
     }
 
 
