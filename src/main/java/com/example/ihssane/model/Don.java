@@ -1,37 +1,35 @@
 package com.example.ihssane.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.transaction.TransactionScoped;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 @Entity
-@Table(name = "Don")
+@Table(name = "Dons")
 
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 
-@DiscriminatorColumn(name = "TypeDon")
 @Data  @AllArgsConstructor  @ToString @NoArgsConstructor
-public  class Don  {
+public  class Don implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
-    private Date dateCreation;
+    private String categorie;
+    private String dateCreation;
     private String description;
     private String photo;
 
-   /* @Column(name="TypeDon", insertable = false, updatable = false)
-    protected String TypeDon;
 
-    public String getTypeDon() {
-        return TypeDon;
-    }*/
     @ManyToOne
-    @JoinColumn(name = "IdDonneur")
-    @Transient
-    private Donneur donneur;
+    @JoinColumn(name = "Iddonneur")
+    private Utilisateur donneur;
+
 
 
 }

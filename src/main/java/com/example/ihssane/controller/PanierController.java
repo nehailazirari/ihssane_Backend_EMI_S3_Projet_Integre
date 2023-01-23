@@ -2,16 +2,13 @@ package com.example.ihssane.controller;
 
 
 import com.example.ihssane.autres.EtatDemande;
-import com.example.ihssane.model.*;
+import com.example.ihssane.model.Panier;
+import com.example.ihssane.model.Utilisateur;
 import com.example.ihssane.service.PanierService;
 import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/panier")
@@ -22,8 +19,7 @@ public class PanierController {
 
 
 
-
-    public PanierController( PanierService panierService) {
+    public PanierController(PanierService panierService) {
         this.panierService = panierService;
     }
 

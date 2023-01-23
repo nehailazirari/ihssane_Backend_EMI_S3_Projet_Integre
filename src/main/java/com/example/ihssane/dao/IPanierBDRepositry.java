@@ -1,6 +1,5 @@
-package com.example.ihssane.DAO;
+package com.example.ihssane.dao;
 
-import com.example.ihssane.model.Panier;
 import com.example.ihssane.model.PanierBD;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

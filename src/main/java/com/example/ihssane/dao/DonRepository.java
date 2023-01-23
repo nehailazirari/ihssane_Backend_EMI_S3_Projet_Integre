@@ -1,4 +1,4 @@
-package com.example.ihssane.repository;
+package com.example.ihssane.dao;
 
 import com.example.ihssane.model.Don;
 import org.springframework.data.jpa.repository.JpaRepository;

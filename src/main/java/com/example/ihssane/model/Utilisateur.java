@@ -1,47 +1,75 @@
 package com.example.ihssane.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.io.Serializable;
+import java.util.List;
+
 
 @Entity
 @Table(name = "Utilisateur")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Utilisateur implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdUtilisateur")
+    private Long id ;
+    @Column(name = "email",unique=true)
+    private String email;
 
-public abstract class Utilisateur {
-    @Id()
-    @GeneratedValue
-    private Long id;
-
-    @Column(nullable = false)
+    @Column(name = "nom")
     private String nom;
 
-    @Column(nullable = false)
+    @Column(name = "prenom")
     private String prenom;
 
-    @Column(nullable = false)
+    @Column(name = "password")
     private String password;
 
-    @Column(nullable = false)
-    private String gmail;
 
-    @Column(nullable = false)
+    @Column(name = "ville")
     private String ville;
 
-    @Column(nullable = false)
-    private Date naissance;
 
-    @Column(name = "tel")
-    private String telephone;
 
-    public Utilisateur(Long id, String nom, String prenom, String password, String gmail, String ville, Date naissance, String telephone) {
-        this.id = id;
+    @Column(name = "adresse")
+    private String adresse;
+
+    @Column(name = "telephone")
+    private String tel;
+
+    @Column(name = "Date_de_Naissance")
+    private String date_de_naissance;
+
+    @Column(name = "photo")
+    private String photo;
+
+    @Column(name = "points")
+    private int points;
+
+
+    //Dons de l'utilisateur
+   @OneToMany(mappedBy = "donneur")
+    List<Don> dons;
+
+   //Favories
+   @OneToMany(mappedBy = "utilisateur")
+    private List<Favories> favories;
+
+
+
+
+
+    public Utilisateur ( String nom, String prenom, String password, String gmail, String ville,String naissance, String telephone,String photo,int points ){
+
+        this.email = email;
         this.nom = nom;
         this.prenom = prenom;
         this.password = password;
-        this.gmail = gmail;
         this.ville = ville;
-        this.naissance = naissance;
-        this.telephone = telephone;
+        this.tel = tel;
+        this.date_de_naissance = date_de_naissance;
+        this.adresse=adresse;
+        this.photo=photo;
+        this.points=points;
     }
 
     public Utilisateur() {
@@ -52,8 +80,16 @@ public abstract class Utilisateur {
         return id;
     }
 
-    public void setId( Long id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getNom() {
@@ -64,14 +100,6 @@ public abstract class Utilisateur {
         this.nom = nom;
     }
 
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -80,12 +108,12 @@ public abstract class Utilisateur {
         this.password = password;
     }
 
-    public String getGmail() {
-        return gmail;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public void setGmail(String gmail) {
-        this.gmail = gmail;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public String getVille() {
@@ -96,33 +124,60 @@ public abstract class Utilisateur {
         this.ville = ville;
     }
 
-    public Date getNaissance() {
-        return naissance;
+    public String getTel() {
+        return tel;
     }
 
-    public void setNaissance(Date naissance) {
-        this.naissance = naissance;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getDate_de_naissance() {
+        return date_de_naissance;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setDate_de_naissance(String date_de_naissance) {
+        this.date_de_naissance = date_de_naissance;
     }
 
-    @Override
-    public String toString() {
-        return "Utilisateur{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", password='" + password + '\'' +
-                ", gmail='" + gmail + '\'' +
-                ", ville='" + ville + '\'' +
-                ", naissance=" + naissance +
-                ", telephone='" + telephone + '\'' +
-                '}';
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public List<Don> getDons() {
+        return dons;
+    }
+
+    public void setDons(List<Don> dons) {
+        this.dons = dons;
+    }
+
+    public List<Favories> getFavories() {
+        return favories;
+    }
+
+    public void setFavories(List<Favories> favories) {
+        this.favories = favories;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }
+

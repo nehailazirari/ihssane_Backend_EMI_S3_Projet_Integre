@@ -1,7 +1,6 @@
-package com.example.ihssane.DAO;
+package com.example.ihssane.dao;
 
 import com.example.ihssane.model.Panier;
-import com.example.ihssane.model.Utilisateur;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

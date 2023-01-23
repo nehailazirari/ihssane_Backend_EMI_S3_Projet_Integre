@@ -1,15 +1,9 @@
 package com.example.ihssane;
 
-import com.example.ihssane.model.Don;
-import com.example.ihssane.model.Donneur;
-import com.example.ihssane.model.Vetements;
-import com.example.ihssane.repository.DonRepository;
-import com.example.ihssane.repository.DonneurRepository;
+import com.example.ihssane.dao.DonRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.Date;
 
 @SpringBootTest
 class IhssaneApplicationTests {

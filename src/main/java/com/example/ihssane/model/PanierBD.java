@@ -4,7 +4,6 @@ package com.example.ihssane.model;
 import com.example.ihssane.autres.EtatDemande;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
@@ -22,7 +21,7 @@ public class PanierBD {
     private Don don;
     private EtatDemande etatDemande;
 
-    public PanierBD( Don don, EtatDemande etatDemande) {
+    public PanierBD(Don don, EtatDemande etatDemande) {
         this.don = don;
         this.etatDemande = etatDemande;
     }
