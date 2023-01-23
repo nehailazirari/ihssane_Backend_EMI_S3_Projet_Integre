@@ -1,17 +1,15 @@
 package com.example.ihssane.model;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "Utilisateur")
-public class Utilisateur implements Serializable {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
+public abstract class Utilisateur {
     @Id()
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue
     private Long id;
 
     @Column(nullable = false)
@@ -35,16 +33,6 @@ public class Utilisateur implements Serializable {
     @Column(name = "tel")
     private String telephone;
 
-    public Utilisateur(String nom, String prenom, String password, String gmail, String ville, Date naissance, String telephone) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.password = password;
-        this.gmail = gmail;
-        this.ville = ville;
-        this.naissance = naissance;
-        this.telephone = telephone;
-    }
-
     public Utilisateur(Long id, String nom, String prenom, String password, String gmail, String ville, Date naissance, String telephone) {
         this.id = id;
         this.nom = nom;
@@ -55,6 +43,7 @@ public class Utilisateur implements Serializable {
         this.naissance = naissance;
         this.telephone = telephone;
     }
+
     public Utilisateur() {
 
     }
@@ -63,7 +52,7 @@ public class Utilisateur implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId( Long id) {
         this.id = id;
     }
 
@@ -121,5 +110,19 @@ public class Utilisateur implements Serializable {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    @Override
+    public String toString() {
+        return "Utilisateur{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", password='" + password + '\'' +
+                ", gmail='" + gmail + '\'' +
+                ", ville='" + ville + '\'' +
+                ", naissance=" + naissance +
+                ", telephone='" + telephone + '\'' +
+                '}';
     }
 }

@@ -1,0 +1,9 @@
+POST http://localhost:8080/ajouterUnDon
+Content-Type: application/json
+ {
+  "id": "null",
+  "nom": "a",
+  "datecreation":"b",
+  "description":"c",
+  "photo":"d",
+}
