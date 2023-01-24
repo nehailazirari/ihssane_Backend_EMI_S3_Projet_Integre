@@ -13,7 +13,7 @@ public class MessageController {
 
     @Autowired
     private MessageService service;
-
+    int u;
 
     @PostMapping
     public Message sendMessage(@RequestBody Message message) {
