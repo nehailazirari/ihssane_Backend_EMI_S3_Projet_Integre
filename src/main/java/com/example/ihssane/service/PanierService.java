@@ -1,7 +1,8 @@
 package com.example.ihssane.service;
 
-import com.example.ihssane.dao.IPanierBDRepositry;
-import com.example.ihssane.dao.IPanierRepository;
+
+import com.example.ihssane.DAO.IPanierBDRepositry;
+import com.example.ihssane.DAO.IPanierRepository;
 import com.example.ihssane.autres.EtatDemande;
 import com.example.ihssane.model.Don;
 import com.example.ihssane.model.Panier;

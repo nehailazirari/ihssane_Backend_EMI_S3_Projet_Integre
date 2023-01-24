@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UtilisateurService {
@@ -29,6 +30,10 @@ public class UtilisateurService {
     public Utilisateur findUser(String email, String password) {
         return userepo.findUser(email, password);
 
+    }
+
+    public Optional<Utilisateur> getUserById(Long id){
+        return userepo.findById(id);
     }
 
     public void delete(Long id) {

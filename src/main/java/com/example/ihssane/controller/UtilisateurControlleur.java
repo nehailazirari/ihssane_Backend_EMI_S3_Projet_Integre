@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 @CrossOrigin(origins="*")
@@ -31,6 +32,10 @@ public class UtilisateurControlleur {
 		String password = (String)input.get("password");
 		Utilisateur bool = userservice.findUser(email,password);
 		return ResponseEntity.status(HttpStatus.OK).body(bool);
+	}
+	@GetMapping("/users/{userId}")
+	public Optional<Utilisateur> getUser(@PathVariable Long userId){
+		return userservice.getUserById(userId);
 	}
 
 	@DeleteMapping("/users/{id}")    //suppimer
