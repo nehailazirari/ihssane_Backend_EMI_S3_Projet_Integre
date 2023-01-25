@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 @Entity
 
 public class Message{
-    @Id
+    @Idjjjj
     private Long id;
 
     private String message;
