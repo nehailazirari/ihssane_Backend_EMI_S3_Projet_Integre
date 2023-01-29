@@ -1,5 +1,8 @@
 package com.example.ihssane.controller;
 
+//import com.example.ihssane.model.Utilisateur;
+//import com.example.ihssane.service.UtilisateurService;
+import com.example.ihssane.model.Don;
 import com.example.ihssane.model.Utilisateur;
 import com.example.ihssane.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +16,26 @@ import java.util.Optional;
 
 
 @CrossOrigin(origins="*")
-@RestController
+//@RestController
 public class UtilisateurControlleur {
 
-	@Autowired
-	UtilisateurService userservice;
 
+
+    @Autowired
+    private UtilisateurService donorService;
+
+    @GetMapping("/donor/{id}")
+    public ResponseEntity<List<Don>> getDonorDons(@PathVariable Long id) {
+        List<Don> dons = donorService.getDonorDons(id);
+        if (dons.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(dons, HttpStatus.OK);
+    }
 
 	@PostMapping("/register")
 	void addUser(@RequestBody Utilisateur user) {
-		userservice.save(user);
+		//userservice.save(user);
 	}
 
 	@PostMapping("/login")
@@ -30,17 +43,17 @@ public class UtilisateurControlleur {
 
 		String email = (String)input.get("email");
 		String password = (String)input.get("password");
-		Utilisateur bool = userservice.findUser(email,password);
+		Utilisateur bool = donorService.findUser(email,password);
 		return ResponseEntity.status(HttpStatus.OK).body(bool);
 	}
 	@GetMapping("/users/{userId}")
 	public Optional<Utilisateur> getUser(@PathVariable Long userId){
-		return userservice.getUserById(userId);
+		return donorService.getUserById(userId);
 	}
 
-	@DeleteMapping("/users/{id}")    //suppimer
+	@DeleteMapping("/users/{id}")
 	public ResponseEntity<String> delete(@PathVariable("id") Long id) {
-		userservice.delete(id);
+		donorService.delete(id);
 		return new ResponseEntity<String>("Expense is deleted successfully.!", HttpStatus.OK);
 	}
 
@@ -49,14 +62,14 @@ public class UtilisateurControlleur {
 	public ResponseEntity<?> emailCheck(@RequestBody Map<String, Object> inputData) {
 
 		String email = (String)inputData.get("email");
-		Utilisateur user = userservice.emailExists(email);
+		Utilisateur user = donorService.emailExists(email);
 		return ResponseEntity.status(HttpStatus.OK).body(user);
 	}
 		//Favories
 
 	@GetMapping("/favorie/{id}")
 	public List<Long> AfficherFavorie(@PathVariable("id") Long id) {
-		return userservice.getFavorie_User(id);
+		return donorService.getFavorie_User(id);
 
 	}
 

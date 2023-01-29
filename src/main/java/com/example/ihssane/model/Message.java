@@ -1,4 +1,4 @@
-package com.example.ihssane.model;
+/*package com.example.ihssane.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -6,7 +6,9 @@ import java.sql.Timestamp;
 @Entity
 
 public class Message{
-    @Idjjjj
+
+    @Id
+
     private Long id;
 
     private String message;
@@ -68,4 +70,4 @@ public class Message{
     public void setLastSeen(Timestamp lastSeen) {
         this.lastSeen = lastSeen;
     }
-}
+}*/

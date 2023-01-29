@@ -1,4 +1,4 @@
-package com.example.ihssane.DAO;
+/*package com.example.ihssane.dao;
 
 import com.example.ihssane.model.Panier;
 import com.example.ihssane.model.PanierBD;
@@ -10,4 +10,4 @@ public interface IPanierBDRepositry extends JpaRepository<PanierBD, Long> {
 
 
 
-}
+}*/

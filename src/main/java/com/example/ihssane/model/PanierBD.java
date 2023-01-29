@@ -1,3 +1,4 @@
+/*
 package com.example.ihssane.model;
 
 
@@ -35,3 +36,4 @@ public class PanierBD {
     public PanierBD() {
     }
 }
+*/

@@ -1,35 +1,132 @@
 package com.example.ihssane.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
-import javax.transaction.TransactionScoped;
-import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Table(name = "Dons")
+@Table(name = "Don")
 
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 
-@Data  @AllArgsConstructor  @ToString @NoArgsConstructor
-public  class Don implements Serializable {
+//@DiscriminatorColumn(name = "TypeDon")
+  @AllArgsConstructor  @ToString @NoArgsConstructor
+public  class Don  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
-    private String categorie;
-    private String dateCreation;
+
+
+    @Temporal(TemporalType.DATE)
+    private Date dateCreation;
     private String description;
     private String photo;
 
 
-    @ManyToOne
-    @JoinColumn(name = "Iddonneur")
-    private Utilisateur donneur;
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+    @JoinColumn(name = "category_id")
 
+    private Category category;
+
+
+   /* @Column(name="TypeDon", insertable = false, updatable = false)
+    protected String TypeDon;
+
+    public String getTypeDon() {
+        return TypeDon;
+    }*/
+
+    @ManyToOne
+    @JoinColumn(name = "donor_id")
+    //@JsonManagedReference
+    private Utilisateur donneur;
+    //@Transient
+
+
+
+
+    public Utilisateur getDonneur() {
+        return donneur;
+    }
+
+    public void setDonneur(Utilisateur donneur) {
+        this.donneur = donneur;
+    }
+
+    /*public Don(Long id, String nom, Date dateCreation, String description, String photo, Category category, Donneur donneur) {
+        this.id = id;
+        this.nom = nom;
+        this.dateCreation = dateCreation;
+        this.description = description;
+        this.photo = photo;
+        this.category=category;
+        this.donneur = donneur;
+    }*/
+
+    @Override
+    public String toString() {
+        return "Don{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", dateCreation=" + dateCreation +
+                ", description='" + description + '\'' +
+                ", photo='" + photo + '\'' +
+                ", category=" + category +
+                ", donneur=" + donneur +
+                '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
 
 }

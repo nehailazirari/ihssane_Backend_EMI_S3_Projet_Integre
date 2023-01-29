@@ -1,14 +1,15 @@
 package com.example.ihssane.service;
 
-import com.example.ihssane.DAO.MessageRepository;
-import com.example.ihssane.model.Message;
+/*import com.example.ihssane.dao.MessageRepository;
+import com.example.ihssane.dao.MessageRepository;
+import com.example.ihssane.model.Message;*/
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
 
-@Service
+/*@Service
 public class MessageService {
 
     @Autowired
@@ -28,4 +29,4 @@ public class MessageService {
         return repository.save(message);
     }
 
-}
+}*/

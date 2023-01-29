@@ -1,9 +1,11 @@
-package com.example.ihssane.service;
+/*package com.example.ihssane.service;
 
 
 import com.example.ihssane.DAO.IPanierBDRepositry;
 import com.example.ihssane.DAO.IPanierRepository;
 import com.example.ihssane.autres.EtatDemande;
+import com.example.ihssane.dao.IPanierBDRepositry;
+import com.example.ihssane.dao.IPanierRepository;
 import com.example.ihssane.model.Don;
 import com.example.ihssane.model.Panier;
 import com.example.ihssane.model.PanierBD;
@@ -11,15 +13,16 @@ import com.example.ihssane.model.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.Set;*/
 
+/*
 @Service
 public class PanierService {
 
     @Autowired
     private IPanierRepository panierRepository;
     @Autowired
-    private DonService donService;
+    private ServiceProduit donService;
     @Autowired
     private IPanierBDRepositry panierBDRepositry;
 
@@ -28,7 +31,7 @@ public class PanierService {
         panier.setUtilisateur(utilisateur);
         PanierBD panierBD = new PanierBD();
         panierBD.setEtatDemande(EtatDemande._____);
-        panierBD.setDon(donService.getDonById(id));
+        panierBD.setDon(donService.afficherUnDon(id));
         panier.getPanierBD().add(panierBD);
 
         return panierRepository.save(panier);
@@ -38,7 +41,7 @@ public class PanierService {
     public Panier addToExistingShoppingCart(Long id, Utilisateur utilisateur) {
 
         Panier panier = panierRepository.findByUtilisateur(utilisateur.getId());
-        Don don = donService.getDonById(id);
+        Don don = donService.afficherUnDon(id);
 
         if(panier != null)
         {
@@ -91,3 +94,4 @@ public class PanierService {
     }
 
 }
+*/

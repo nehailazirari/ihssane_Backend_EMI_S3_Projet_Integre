@@ -1,3 +1,4 @@
+/*
 package com.example.ihssane.controller;
 
 import com.example.ihssane.model.Message;
@@ -30,4 +31,5 @@ public class MessageController {
         return service.updateMessageSeen(id);
     }
 }
+*/
 

@@ -1,4 +1,4 @@
-package com.example.ihssane.DAO;
+/*package com.example.ihssane.dao;
 
 import com.example.ihssane.model.Message;
 
@@ -9,4 +9,4 @@ import java.util.List;
 public interface MessageRepository extends JpaRepository<Message, Long> {
 
     List<Message> findByFromUserIdOrToUserId(Long fromUserId, Long toUserId);
-}
+}*/

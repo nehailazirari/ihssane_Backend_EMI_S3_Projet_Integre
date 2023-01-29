@@ -1,6 +1,7 @@
 package com.example.ihssane;
 
 import com.example.ihssane.dao.DonRepository;
+//import com.example.ihssane.dao.DonneurRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class IhssaneApplicationTests {
 
-    @Autowired
+    /*@Autowired
     private DonRepository donRepository;
 
     @Autowired
@@ -21,7 +22,7 @@ class IhssaneApplicationTests {
         //Don don= donneur.creerDon(null,"tricot",new Date(),"jolie","hh",donneur);
         //donneurRepository.save(donneur);
         //donRepository.save(don);
-    }
+    }*/
 
 
 }

@@ -2,6 +2,7 @@ package com.example.ihssane.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -39,16 +40,15 @@ public class Utilisateur implements Serializable {
     @Column(name = "Date_de_Naissance")
     private String date_de_naissance;
 
-    @Column(name = "photo")
-    private String photo;
 
-    @Column(name = "points")
-    private int points;
+
+
 
 
     //Dons de l'utilisateur
-   @OneToMany(mappedBy = "donneur")
-    List<Don> dons;
+    @OneToMany(mappedBy = "donneur",cascade = CascadeType.ALL)
+    //@JsonBackReference
+    private Collection<Don> dons;
 
    //Favories
    @OneToMany(mappedBy = "utilisateur")
@@ -58,18 +58,17 @@ public class Utilisateur implements Serializable {
 
 
 
-    public Utilisateur ( String nom, String prenom, String password, String gmail, String ville,String naissance, String telephone,String photo,int points ){
 
+    public Utilisateur(Long id, String email, String nom, String prenom, String password, String ville, String adresse, String tel, String date_de_naissance) {
+        this.id = id;
         this.email = email;
         this.nom = nom;
         this.prenom = prenom;
         this.password = password;
         this.ville = ville;
+        this.adresse = adresse;
         this.tel = tel;
         this.date_de_naissance = date_de_naissance;
-        this.adresse=adresse;
-        this.photo=photo;
-        this.points=points;
     }
 
     public Utilisateur() {
@@ -148,13 +147,7 @@ public class Utilisateur implements Serializable {
         this.adresse = adresse;
     }
 
-    public List<Don> getDons() {
-        return dons;
-    }
 
-    public void setDons(List<Don> dons) {
-        this.dons = dons;
-    }
 
     public List<Favories> getFavories() {
         return favories;
@@ -164,20 +157,7 @@ public class Utilisateur implements Serializable {
         this.favories = favories;
     }
 
-    public String getPhoto() {
-        return photo;
-    }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
 
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
 }
 
