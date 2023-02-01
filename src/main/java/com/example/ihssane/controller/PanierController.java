@@ -4,6 +4,7 @@ package com.example.ihssane.controller;
 
 import com.example.ihssane.autres.EtatDemande;
 import com.example.ihssane.model.Panier;
+import com.example.ihssane.model.PanierBD;
 import com.example.ihssane.model.Utilisateur;
 import com.example.ihssane.service.PanierService;
 import com.sun.istack.NotNull;
@@ -11,8 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
+@CrossOrigin
 @RestController
-@RequestMapping(path = "api/panier")
+@RequestMapping(path = "/api/panier")
 public class PanierController {
 
     @Autowired
@@ -30,12 +32,19 @@ public class PanierController {
         return panierService.getPanierByUtilisateur(id);
     }
     @PostMapping("/Qu/{id}")
-    public void addToCart(@PathVariable("id") Long id,@RequestBody Utilisateur utilisateur){
-        panierService.addToExistingShoppingCart(id,utilisateur);
+    public PanierBD addToCart(@PathVariable("id") Long id, @RequestBody Utilisateur utilisateur){
+       return panierService.addToExistingShoppingCart(id,utilisateur);
     }
 //    @RequestBody Long id,
 
-
+    @GetMapping("/inCart/{idDon}")
+    public boolean inCart(@PathVariable("idDon") Long idDon){
+        return panierService.inCart(idDon);
+    }
+    @GetMapping("/getByIdDon/{idDon}")
+    public Long getIdPanierBD(@PathVariable("idDon") Long idDon){
+        return this.panierService.getIdDon(idDon);
+    }
     @DeleteMapping("/deletePanierBD/{idPanierBD}/{idUtilisateur}")
     public void deletePanierBDFromPanier(@PathVariable("idPanierBD")  Long idPanierBD,@PathVariable("idUtilisateur") Long idUtilisateur){
 

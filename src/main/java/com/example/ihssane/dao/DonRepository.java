@@ -1,7 +1,6 @@
-package com.example.ihssane.dao;
+package com.example.ihssane.DAO;
 
 import com.example.ihssane.model.Don;
-//import com.example.ihssane.model.Donneur;
 import com.example.ihssane.model.Utilisateur;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,8 +17,7 @@ public interface DonRepository extends JpaRepository<Don,Long> {
 
     //List<Donation> findByDonorId(Long donorId);
     public List<Don> findByDonneurId(Long userId);
-    @Query("select d from Don d where d.donneur.id =:userId and d.category.designation =:category")
-    public List<Don> findByDonneurIdAndCategory(Long userId, String category);
+    public List<Don> findByDonneurIdAndCategory(Long userId,String category);
 
 
     List<Don> findDonByDonneur(Optional<Utilisateur> donor);
@@ -28,4 +26,6 @@ public interface DonRepository extends JpaRepository<Don,Long> {
     public List<Don> findAllByCategory(String designation);
 
     List<Don> findByNomContainingIgnoreCase(String title);
+    @Query("SELECT d FROM Don d")
+    List<Don> findAllDons();
 }

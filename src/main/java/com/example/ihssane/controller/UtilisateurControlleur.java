@@ -1,8 +1,5 @@
 package com.example.ihssane.controller;
 
-//import com.example.ihssane.model.Utilisateur;
-//import com.example.ihssane.service.UtilisateurService;
-import com.example.ihssane.model.Don;
 import com.example.ihssane.model.Utilisateur;
 import com.example.ihssane.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,27 +12,18 @@ import java.util.Map;
 import java.util.Optional;
 
 
-@CrossOrigin(origins="*")
-//@RestController
+@CrossOrigin
+@RestController
+@RequestMapping("/utilisateurs")
 public class UtilisateurControlleur {
 
+	@Autowired
+	UtilisateurService userservice;
 
-
-    @Autowired
-    private UtilisateurService donorService;
-
-    @GetMapping("/donor/{id}")
-    public ResponseEntity<List<Don>> getDonorDons(@PathVariable Long id) {
-        List<Don> dons = donorService.getDonorDons(id);
-        if (dons.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(dons, HttpStatus.OK);
-    }
 
 	@PostMapping("/register")
 	void addUser(@RequestBody Utilisateur user) {
-		//userservice.save(user);
+		userservice.save(user);
 	}
 
 	@PostMapping("/login")
@@ -43,17 +31,17 @@ public class UtilisateurControlleur {
 
 		String email = (String)input.get("email");
 		String password = (String)input.get("password");
-		Utilisateur bool = donorService.findUser(email,password);
+		Utilisateur bool = userservice.findUser(email,password);
 		return ResponseEntity.status(HttpStatus.OK).body(bool);
 	}
-	@GetMapping("/users/{userId}")
+	@GetMapping("/getUsers/{userId}")
 	public Optional<Utilisateur> getUser(@PathVariable Long userId){
-		return donorService.getUserById(userId);
+		return userservice.getUserById(userId);
 	}
 
-	@DeleteMapping("/users/{id}")
+	@DeleteMapping("/users/{id}")    //suppimer
 	public ResponseEntity<String> delete(@PathVariable("id") Long id) {
-		donorService.delete(id);
+		userservice.delete(id);
 		return new ResponseEntity<String>("Expense is deleted successfully.!", HttpStatus.OK);
 	}
 
@@ -62,14 +50,14 @@ public class UtilisateurControlleur {
 	public ResponseEntity<?> emailCheck(@RequestBody Map<String, Object> inputData) {
 
 		String email = (String)inputData.get("email");
-		Utilisateur user = donorService.emailExists(email);
+		Utilisateur user = userservice.emailExists(email);
 		return ResponseEntity.status(HttpStatus.OK).body(user);
 	}
 		//Favories
 
 	@GetMapping("/favorie/{id}")
 	public List<Long> AfficherFavorie(@PathVariable("id") Long id) {
-		return donorService.getFavorie_User(id);
+		return userservice.getFavorie_User(id);
 
 	}
 

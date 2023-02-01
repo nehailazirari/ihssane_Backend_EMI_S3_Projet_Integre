@@ -1,26 +1,26 @@
 package com.example.ihssane.controller;
 
-import com.example.ihssane.dao.DonRepository;
+import com.example.ihssane.model.Category;
 import com.example.ihssane.model.Don;
-//import com.example.ihssane.model.Donneur;
-//import com.example.ihssane.repository.DonRepository;
+
+import com.example.ihssane.DAO.DonRepository;
 import com.example.ihssane.model.Utilisateur;
-import com.example.ihssane.service.ServiceProduit;
-import org.apache.velocity.exception.ResourceNotFoundException;
+import com.example.ihssane.service.DonService;
+import com.example.ihssane.service.DonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
-
+import java.util.Optional;
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/Dons")
 public class DonControlleur {
 
     @Autowired
-    ServiceProduit serviceProduit;
+    DonService serviceProduit;
     @Autowired
     private DonRepository donRepository;
 
@@ -50,23 +50,12 @@ public class DonControlleur {
 */
     //@PutMapping("/ModifierDon")
     //public String modifierDon(@RequestBody Don don){
-        //return serviceProduit.modifier(don);
+    //return serviceProduit.modifier(don);
     //}
 
     @DeleteMapping("/SupprimerDon/{id}")
-    /*public String supprimerDon(@PathVariable Long id){
-
-        serviceProduit.supprimerDon(id);
-        return "Don avec l'id "+id+" a été supprimé avec succès";
-    }*/
-
-    public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
-        try {
-            donRepository.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public String supprimerDon(@PathVariable Long id){
+        return serviceProduit.supprimerDon(id);
     }
 
     /*@PostMapping("/donate")
@@ -108,10 +97,10 @@ public class DonControlleur {
         return new ResponseEntity<>(dons,HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/category/{id}/{designation}")
-    public ResponseEntity<List<Don> >getDonationsByCategory(@PathVariable Long id,@PathVariable String designation) {
-        List<Don> dons=serviceProduit.findDonationsByUserIdAndCategory(id,designation);
+
+    @GetMapping("/category/{designation}")
+    public ResponseEntity<List<Don> >getDonationsByCategory(@PathVariable String designation) {
+        List<Don> dons=serviceProduit.findDonByCategory(designation);
         return new ResponseEntity<>(dons,HttpStatus.OK);
     }
 
@@ -122,27 +111,10 @@ public class DonControlleur {
         List<Don> result = donRepository.findByNomContainingIgnoreCase(key);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Don> updateDonation(@PathVariable(value = "id") Long donationId,
-                              @Valid @RequestBody Don donationDetails) {
-        try {
-            Don donation = donRepository.findById(donationId)
-                    .orElseThrow((null));
-            donation.setPhoto(donationDetails.getPhoto());
-            donation.setNom(donationDetails.getNom());
-            donation.setDescription(donationDetails.getDescription());
-            donation.setCategory(donationDetails.getCategory());
-            // Code pour mettre à jour la donation ici
-            // Exemple : donation.setName(donationDetails.getName());
-            donRepository.save(donation);
-            return ResponseEntity.ok().body(donation);
-            //return donation;
-        } catch (ResourceNotFoundException ex) {
-            return ResponseEntity.notFound().build();
-            //return null;
-        }
+    @GetMapping("/All")
+    public List<Don> getAllDons(){
+        return serviceProduit.getAllDon();
     }
 
-
 }
+

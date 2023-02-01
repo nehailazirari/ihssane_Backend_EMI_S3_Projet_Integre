@@ -1,6 +1,6 @@
 package com.example.ihssane;
 
-import com.example.ihssane.dao.DonRepository;
+import com.example.ihssane.DAO.DonRepository;
 //import com.example.ihssane.dao.DonneurRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,7 @@ class IhssaneApplicationTests {
     /*@Autowired
     private DonRepository donRepository;
 
-    @Autowired
-    private DonneurRepository donneurRepository;
+
 
     @Test
     public void testCreateProduit(){
