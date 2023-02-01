@@ -1,4 +1,4 @@
-/*package com.example.ihssane.dao;
+package com.example.ihssane.dao;
 
 import com.example.ihssane.model.Don;
 import com.example.ihssane.model.Donneur;
@@ -12,4 +12,4 @@ import java.util.List;
 public interface DonneurRepository extends JpaRepository<Donneur,Long> {
 
     public List<Don> findDonsById(Long id);
-}*/
+}

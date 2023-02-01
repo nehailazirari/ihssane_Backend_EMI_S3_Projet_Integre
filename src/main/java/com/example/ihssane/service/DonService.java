@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ServiceProduit {
+public class DonService {
 
     @Autowired
     private DonRepository donRepository;

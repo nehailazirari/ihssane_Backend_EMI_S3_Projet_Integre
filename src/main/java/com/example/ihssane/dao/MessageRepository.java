@@ -1,4 +1,4 @@
-/*package com.example.ihssane.dao;
+package com.example.ihssane.dao;
 
 import com.example.ihssane.model.Message;
 
@@ -19,4 +19,4 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
 
     @Query("SELECT u FROM Utilisateur u JOIN Message m ON (u.id = m.fromUser.id OR u.id = m.toUser.id) WHERE (m.fromUser.id = :userId OR m.toUser.id = :userId) AND u.id NOT IN  (:userId) ORDER BY m.createdDate ASC")
     List<Utilisateur> findUsersByFromUserIdOrToUserId(@Param("userId") Long userId);
-}*/
+}

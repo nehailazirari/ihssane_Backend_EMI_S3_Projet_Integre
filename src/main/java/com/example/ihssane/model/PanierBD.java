@@ -1,4 +1,4 @@
-/*
+
 package com.example.ihssane.model;
 
 
@@ -59,4 +59,4 @@ public class PanierBD {
         this.etatDemande = etatDemande;
     }
 }
-*/
+

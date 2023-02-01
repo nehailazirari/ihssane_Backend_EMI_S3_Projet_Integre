@@ -1,4 +1,4 @@
-/*package com.example.ihssane.dao;
+package com.example.ihssane.dao;
 
 import com.example.ihssane.model.Don;
 import com.example.ihssane.model.Panier;
@@ -17,4 +17,4 @@ public interface IPanierBDRepositry extends JpaRepository<PanierBD, Long> {
 
     @Query(value ="select p from PanierBD p where p.don.id =:idDon")
     PanierBD findByDon(@Param("idDon") Long idDon);
-}*/
+}
