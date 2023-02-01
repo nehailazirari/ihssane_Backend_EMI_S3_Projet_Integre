@@ -8,8 +8,6 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Setter
-@Getter
 public class PanierBD {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,5 +31,30 @@ public class PanierBD {
     }
 
     public PanierBD() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Don getDon() {
+        return don;
+    }
+
+    public void setDon(Don don) {
+
+        this.don = don;
+    }
+
+    public EtatDemande getEtatDemande() {
+        return etatDemande;
+    }
+
+    public void setEtatDemande(EtatDemande etatDemande) {
+        this.etatDemande = etatDemande;
     }
 }

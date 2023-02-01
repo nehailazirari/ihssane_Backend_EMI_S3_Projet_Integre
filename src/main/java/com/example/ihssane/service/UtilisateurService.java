@@ -1,8 +1,9 @@
 package com.example.ihssane.service;
 
 
-import com.example.ihssane.dao.DonRepository;
-import com.example.ihssane.dao.UtilisateurRepository;
+import com.example.ihssane.DAO.UtilisateurRepository;
+import com.example.ihssane.DAO.DonRepository;
+
 import com.example.ihssane.model.Don;
 import com.example.ihssane.model.Favories;
 import com.example.ihssane.model.Utilisateur;

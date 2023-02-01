@@ -1,75 +1,47 @@
 package com.example.ihssane.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
-
+import java.util.Date;
 
 @Entity
 @Table(name = "Utilisateur")
-public class Utilisateur implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdUtilisateur")
-    private Long id ;
-    @Column(name = "email",unique=true)
-    private String email;
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 
-    @Column(name = "nom")
+public class Utilisateur {
+    @Id()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
     private String nom;
 
-    @Column(name = "prenom")
+    @Column(nullable = false)
     private String prenom;
 
-    @Column(name = "password")
+    @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String email;
 
-    @Column(name = "ville")
+    @Column(nullable = false)
     private String ville;
 
+    @Column(nullable = false)
+    private Date naissance;
 
+    @Column(name = "tel")
+    private String telephone;
 
-    @Column(name = "adresse")
-    private String adresse;
-
-    @Column(name = "telephone")
-    private String tel;
-
-    @Column(name = "Date_de_Naissance")
-    private String date_de_naissance;
-
-    @Column(name = "photo")
-    private String photo;
-
-    @Column(name = "points")
-    private int points;
-
-
-    //Dons de l'utilisateur
-   @OneToMany(mappedBy = "donneur")
-    List<Don> dons;
-
-   //Favories
-   @OneToMany(mappedBy = "utilisateur")
-    private List<Favories> favories;
-
-
-
-
-
-    public Utilisateur ( String nom, String prenom, String password, String gmail, String ville,String naissance, String telephone,String photo,int points ){
-
-        this.email = email;
+    public Utilisateur(Long id, String nom, String prenom, String password, String gmail, String ville, Date naissance, String telephone) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.password = password;
+        this.email = gmail;
         this.ville = ville;
-        this.tel = tel;
-        this.date_de_naissance = date_de_naissance;
-        this.adresse=adresse;
-        this.photo=photo;
-        this.points=points;
+        this.naissance = naissance;
+        this.telephone = telephone;
     }
 
     public Utilisateur() {
@@ -80,16 +52,8 @@ public class Utilisateur implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId( Long id) {
         this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getNom() {
@@ -100,6 +64,14 @@ public class Utilisateur implements Serializable {
         this.nom = nom;
     }
 
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -108,12 +80,12 @@ public class Utilisateur implements Serializable {
         this.password = password;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setEmail(String gmail) {
+        this.email = gmail;
     }
 
     public String getVille() {
@@ -124,60 +96,33 @@ public class Utilisateur implements Serializable {
         this.ville = ville;
     }
 
-    public String getTel() {
-        return tel;
+    public Date getNaissance() {
+        return naissance;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setNaissance(Date naissance) {
+        this.naissance = naissance;
     }
 
-    public String getDate_de_naissance() {
-        return date_de_naissance;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setDate_de_naissance(String date_de_naissance) {
-        this.date_de_naissance = date_de_naissance;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public List<Don> getDons() {
-        return dons;
-    }
-
-    public void setDons(List<Don> dons) {
-        this.dons = dons;
-    }
-
-    public List<Favories> getFavories() {
-        return favories;
-    }
-
-    public void setFavories(List<Favories> favories) {
-        this.favories = favories;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
+    @Override
+    public String toString() {
+        return "Utilisateur{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", password='" + password + '\'' +
+                ", gmail='" + email + '\'' +
+                ", ville='" + ville + '\'' +
+                ", naissance=" + naissance +
+                ", telephone='" + telephone + '\'' +
+                '}';
     }
 }
-

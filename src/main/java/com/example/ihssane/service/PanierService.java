@@ -8,9 +8,11 @@ import com.example.ihssane.model.Don;
 import com.example.ihssane.model.Panier;
 import com.example.ihssane.model.PanierBD;
 import com.example.ihssane.model.Utilisateur;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Null;
 import java.util.Set;
 
 @Service
@@ -23,19 +25,20 @@ public class PanierService {
     @Autowired
     private IPanierBDRepositry panierBDRepositry;
 
-    public Panier addShoppingCartFirstTime(Long id, Utilisateur utilisateur) {
+    public PanierBD addShoppingCartFirstTime(Long id, Utilisateur utilisateur) {
         Panier panier = new Panier();
         panier.setUtilisateur(utilisateur);
         PanierBD panierBD = new PanierBD();
-        panierBD.setEtatDemande(EtatDemande._____);
+        panierBD.setEtatDemande(EtatDemande.encours);
+
         panierBD.setDon(donService.getDonById(id));
         panier.getPanierBD().add(panierBD);
-
-        return panierRepository.save(panier);
+        panierRepository.save(panier);
+        return panierBD;
 
     }
 
-    public Panier addToExistingShoppingCart(Long id, Utilisateur utilisateur) {
+    public PanierBD addToExistingShoppingCart(Long id, Utilisateur utilisateur) {
 
         Panier panier = panierRepository.findByUtilisateur(utilisateur.getId());
         Don don = donService.getDonById(id);
@@ -43,11 +46,11 @@ public class PanierService {
         if(panier != null)
         {
             PanierBD panierBD = new PanierBD();
-            panierBD.setEtatDemande(EtatDemande._____);
+            panierBD.setEtatDemande(EtatDemande.encours);
             panierBD.setDon(don);
             panier.getPanierBD().add(panierBD);
-
-            return panierRepository.saveAndFlush(panier);
+            panierRepository.saveAndFlush(panier);
+            return panierBD;
         }
 
         return this.addShoppingCartFirstTime(id, utilisateur);
@@ -88,6 +91,20 @@ public class PanierService {
         Panier panier = panierRepository.findByUtilisateur(id);
         panierRepository.delete(panier);
 
+    }
+
+    public boolean inCart(Long idDon){
+
+        PanierBD panierBD= panierBDRepositry.findByDon(idDon);
+        if(panierBD!= null){
+            return true;        }
+        return false;
+    }
+    public Long getIdDon(Long idDon){
+
+        PanierBD panierBD= panierBDRepositry.findByDon(idDon);
+
+        return panierBD.getId();
     }
 
 }

@@ -12,8 +12,9 @@ import java.util.Map;
 import java.util.Optional;
 
 
-@CrossOrigin(origins="*")
+@CrossOrigin
 @RestController
+@RequestMapping("/utilisateurs")
 public class UtilisateurControlleur {
 
 	@Autowired
@@ -33,7 +34,7 @@ public class UtilisateurControlleur {
 		Utilisateur bool = userservice.findUser(email,password);
 		return ResponseEntity.status(HttpStatus.OK).body(bool);
 	}
-	@GetMapping("/users/{userId}")
+	@GetMapping("/getUsers/{userId}")
 	public Optional<Utilisateur> getUser(@PathVariable Long userId){
 		return userservice.getUserById(userId);
 	}

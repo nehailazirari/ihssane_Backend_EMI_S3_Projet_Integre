@@ -6,7 +6,8 @@ import java.sql.Timestamp;
 @Entity
 
 public class Message{
-    @Idjjjj
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String message;
