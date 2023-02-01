@@ -1,4 +1,4 @@
-package com.example.ihssane.DAO;
+package com.example.ihssane.dao;
 
 import com.example.ihssane.model.Panier;
 import com.example.ihssane.model.Utilisateur;

@@ -1,3 +1,4 @@
+
 package com.example.ihssane.service;
 
 
@@ -5,66 +6,71 @@ import com.example.ihssane.DAO.UtilisateurRepository;
 import com.example.ihssane.DAO.DonRepository;
 
 import com.example.ihssane.model.Don;
-import com.example.ihssane.model.Favories;
 import com.example.ihssane.model.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UtilisateurService {
-    @Autowired
-    private UtilisateurRepository userepo;
 
+
+
+
+    @Autowired
+    private UtilisateurRepository donorRepository;
     @Autowired
     private DonRepository donRepository;
 
-
+    public List<Don> getDonorDons(Long id) {
+        Optional<Utilisateur> donor = donorRepository.findById(id);
+        return donRepository.findDonByDonneur(donor);
+    }
     public Utilisateur save(Utilisateur user) {
-        return userepo.save(user);
+        return donorRepository.save(user);
     }
 
 
     public Utilisateur findUser(String email, String password) {
-        return userepo.findUser(email, password);
+        return donorRepository.findUser(email, password);
 
     }
 
     public Optional<Utilisateur> getUserById(Long id){
-        return userepo.findById(id);
+        return donorRepository.findById(id);
     }
 
     public void delete(Long id) {
-        userepo.deleteById(id);
+        donorRepository.deleteById(id);
     }
 
     public void update(Long id, Utilisateur user) {
 
-        Utilisateur existingUser = userepo.findById(id).get();
+        Utilisateur existingUser = donorRepository.findById(id).get();
 
         existingUser.setNom(user.getNom());
         existingUser.setPassword(user.getPassword());
         existingUser.setEmail(user.getEmail());
 
-        userepo.save(existingUser);
+        donorRepository.save(existingUser);
 
     }
 
     public Utilisateur emailExists(String email) {
 
-        return userepo.findByEmail(email);
+        return donorRepository.findByEmail(email);
 
     }
 
     //Section de favories
     public List<Long> getFavorie_User(Long userId) {
-        return  userepo.findDon_ofUser(userId);
+        return donorRepository.findDon_ofUser(userId);
     }
 
-    public void addFavorie(Utilisateur idUser,Don don){
+    public void addFavorie(Utilisateur idUser, Don don){
 
     }
 }
+

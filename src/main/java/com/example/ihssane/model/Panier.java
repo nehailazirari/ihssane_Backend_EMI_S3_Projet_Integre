@@ -1,3 +1,4 @@
+
 package com.example.ihssane.model;
 
 import lombok.Getter;
@@ -43,3 +44,4 @@ public class Panier implements Serializable{
 
     }
 }
+
