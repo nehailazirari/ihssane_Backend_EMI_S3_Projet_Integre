@@ -28,4 +28,7 @@ public interface DonRepository extends JpaRepository<Don,Long> {
     List<Don> findByNomContainingIgnoreCase(String title);
     @Query("SELECT d FROM Don d")
     List<Don> findAllDons();
+
+    @Query("select d from Don d where d.donneur.id =:id and upper(d.nom) like upper(concat('%', :title, '%'))")
+    List<Don>   findByDonneurIdAndAndNomContainingIgnoreCase(Long id, String title);
 }
