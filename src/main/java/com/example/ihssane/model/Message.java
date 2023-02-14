@@ -1,6 +1,7 @@
 package com.example.ihssane.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 @Entity
@@ -13,14 +14,18 @@ public class Message{
     private String message;
 
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+
     private Utilisateur fromUser;
 
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @NotNull
     private Utilisateur toUser;
 
     private Timestamp createdDate;
 
     private Timestamp lastSeen;
+
+    private String photoProfil;
 
     public Long getId() {
         return id;
@@ -68,5 +73,13 @@ public class Message{
 
     public void setLastSeen(Timestamp lastSeen) {
         this.lastSeen = lastSeen;
+    }
+
+    public String getPhotoProfil() {
+        return photoProfil;
+    }
+
+    public void setPhotoProfil(String photoProfil) {
+        this.photoProfil = photoProfil;
     }
 }

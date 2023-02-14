@@ -35,9 +35,13 @@ public  class Don  {
         return TypeDon;
     }*/
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "donneurId")
     private Utilisateur donneur;
+
+    public Don(Long iddon_favorie) {
+        this.id= iddon_favorie;
+    }
     //@Transient
 
 
@@ -98,7 +102,7 @@ public  class Don  {
     public void setCategory(Category category) {
         this.category = category;
     }
-/*public Don(Long id, String nom, Date dateCreation, String description, String photo, Category category, Donneur donneur) {
+ /*public Don(Long id, String nom, Date dateCreation, String description, String photo, Category category, Donneur donneur) {
         this.id = id;
         this.nom = nom;
         this.dateCreation = dateCreation;
@@ -116,7 +120,7 @@ public  class Don  {
                 ", dateCreation=" + dateCreation +
                 ", description='" + description + '\'' +
                 ", photo='" + photo + '\'' +
-                ", category=" + category +
+
                 ", donneur=" + donneur +
                 '}';
     }

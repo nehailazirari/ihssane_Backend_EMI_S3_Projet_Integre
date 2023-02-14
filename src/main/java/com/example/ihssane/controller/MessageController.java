@@ -1,6 +1,7 @@
 
 package com.example.ihssane.controller;
 
+import com.example.ihssane.autres.MessageResult;
 import com.example.ihssane.model.Message;
 import com.example.ihssane.model.Utilisateur;
 import com.example.ihssane.service.MessageService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -39,6 +41,10 @@ public class MessageController {
 
     }
 
+    @GetMapping("/getPhoto")
+    public Map<Long, String> getAllPhoto(){
+        return service.getAllPhoto();
+    }
 
     @PutMapping("/{id}")
     public Message updateMessageSeen(@PathVariable Long id) {

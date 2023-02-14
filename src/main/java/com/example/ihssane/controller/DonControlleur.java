@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 @CrossOrigin
@@ -104,11 +105,11 @@ public class DonControlleur {
         return new ResponseEntity<>(dons,HttpStatus.OK);
     }
 
-    @GetMapping("/search/{key}")
-    public ResponseEntity<List<Don>> getByKey( @PathVariable String key) {
+    @GetMapping("/search/{id}/{key}")
+    public ResponseEntity<List<Don>> getByKey( @PathVariable Long id,@PathVariable String key) {
         // Use the key parameter to search for data in the database
         // For example, using a JPA repository
-        List<Don> result = donRepository.findByNomContainingIgnoreCase(key);
+        List<Don> result = donRepository.findByDonneurIdAndAndNomContainingIgnoreCase(id,key);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
     @GetMapping("/All")
@@ -116,5 +117,25 @@ public class DonControlleur {
         return serviceProduit.getAllDon();
     }
 
+
+
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Don> updateDonation(@PathVariable(value = "id") Long donationId,
+                                              @Valid @RequestBody Don donationDetails) {
+
+            Don donation = donRepository.findById(donationId)
+                    .orElseThrow((null));
+            donation.setPhoto(donationDetails.getPhoto());
+            donation.setNom(donationDetails.getNom());
+            donation.setDescription(donationDetails.getDescription());
+            donation.setCategory(donationDetails.getCategory());
+            // Code pour mettre à jour la donation ici
+            // Exemple : donation.setName(donationDetails.getName());
+            donRepository.save(donation);
+            return ResponseEntity.ok().body(donation);
+            //return donation;
+
+    }
 }
 

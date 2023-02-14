@@ -48,6 +48,10 @@ public class Utilisateur {
 
     }
 
+    public Utilisateur(Long idutilisateur) {
+        this.id=idutilisateur;
+    }
+
     public Long getId() {
         return id;
     }

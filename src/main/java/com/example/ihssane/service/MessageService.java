@@ -1,14 +1,18 @@
 package com.example.ihssane.service;
 
 import com.example.ihssane.DAO.MessageRepository;
+import com.example.ihssane.autres.MessageResult;
 import com.example.ihssane.model.Message;
 import com.example.ihssane.model.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Tuple;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MessageService {
@@ -38,4 +42,15 @@ public class MessageService {
         return repository.findUsersByFromUserIdOrToUserId(fromUserId);
     }
 
+    public Map<Long,String> getAllPhoto(){
+        Map<Long,String> map = new HashMap();
+        List<Tuple> results = repository.findAllPhoto();
+        for (Tuple result : results) {
+            Long toUserId = result.get(0, Long.class);
+            String photoProfil = result.get(1, String.class);
+            map.put(toUserId,photoProfil);
+        }
+
+        return map;
+    }
 }
